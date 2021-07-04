@@ -1,0 +1,300 @@
+openapi: 3.0.1
+info:
+  title: "API de Loja de Carro"
+  description: "API para fazer buscas por filtros, cadastros, atualização e remoção no estoque da loja de carro."
+  version: "0.0.1"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "williambferreira2002@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+externalDocs:
+    description: "Documentação burocrática"
+    url: "http://swagger.io"
+servers:
+- url : http://localhost:1010/api
+  description: API de TESTE
+paths:
+  /carros:
+    get:
+      summary: Recupera todas os carros
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+    post:
+      summary: Cria um novo carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chassi:
+                    type: string
+                  nome:
+                    type: string
+                  marca:
+                    type: string
+                  cor:
+                    type: string
+                  valor:
+                    type: integer
+                  anoFabricacao:
+                    type: integer
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/{id}:
+    parameters:
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+    get:
+      summary: Recupera um carro pelo ID
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+    put:
+      summary: Atualiza um carro pelo ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chassi:
+                    type: string
+                  nome:
+                    type: string
+                  marca:
+                    type: string
+                  cor:
+                    type: string
+                  valor:
+                    type: integer
+                  anoFabricacao:
+                    type: integer
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+    delete:
+      summary: Exclui um carro pelo ID
+      responses:
+        201:
+          description: "Sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/nome/{nome}:
+    parameters:
+    - name: nome
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      summary: Recupera um carro pelo nome
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/marca/{marca}:
+    parameters:
+    - name: marca
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      summary: Recupera um carro pela marca
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/cor/{cor}:
+    parameters:
+    - name: cor
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      summary: Recupera um carro pela cor
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/caro/:
+    get:
+      summary: Recupera o carro mais caro
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/barato/:
+    get:
+      summary: Recupera o carro mais barato
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/ordenanome/:
+    get:
+      summary: Ordena os carros por nome
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/ordenavalor/:
+    get:
+      summary: Ordena os carros por valor
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+  /carros/ordenaano/:
+    get:
+      summary: Ordena os carros por ano de fabricação
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carros"
+        404:
+          description: Carro não encontrado
+          content:
+            application/json:
+              example: "Not Found"
+
+components:
+  schemas:
+    Carro:
+      type: object
+      properties:
+        id:
+          type: integer
+        chassi:
+          type: string
+        nome:
+          type: string
+        marca:
+          type: string
+        cor:
+          type: string
+        valor:
+          type: integer
+        anoFabricacao:
+          type: integer
+    Carros:
+      type: array
+      items:
+        $ref: "#/components/schemas/Carro"
+    
+    
